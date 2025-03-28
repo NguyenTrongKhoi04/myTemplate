@@ -1,0 +1,56 @@
+Database này là mô hình quan hệ quản lý nhân sự của một công ty, bao gồm các bảng sau:
+
+1️⃣ employees (Nhân viên)
+    - emp_no (bigint, khóa chính): Mã số nhân viên.
+    - birth_date (date): Ngày sinh.
+    - first_name (varchar(14)): Tên nhân viên.
+    - last_name (varchar(16)): Họ nhân viên.
+    - sex (enum('M', 'F')): Giới tính (Nam - 'M', Nữ - 'F').
+    - hire_date (date): Ngày tuyển dụng.
+    - created_at, updated_at (timestamp): Thời gian tạo và cập nhật bản ghi.
+
+2️⃣ departments (Phòng ban)
+    - dept_no (char(4), khóa chính): Mã số phòng ban.
+    - dept_name (varchar(40)): Tên phòng ban.
+    - created_at, updated_at (timestamp): Thời gian tạo và cập nhật bản ghi.
+
+3️⃣ dept_emp (Quan hệ nhân viên - phòng ban)
+    - emp_no (bigint, khóa ngoại): Nhân viên nào thuộc phòng ban nào.
+    - dept_no (char(4), khóa ngoại): Phòng ban của nhân viên.
+    - from_date, to_date (date): Khoảng thời gian nhân viên làm việc ở phòng ban.
+    📌 Ý nghĩa: Nhân viên có thể làm việc ở nhiều phòng ban khác nhau theo thời gian.
+
+4️⃣ dept_manager (Quản lý phòng ban)
+    - emp_no (bigint, khóa ngoại): Mã số nhân viên là quản lý.
+    - dept_no (char(4), khóa ngoại): Phòng ban mà nhân viên quản lý.
+    - from_date, to_date (date): Thời gian làm quản lý.
+    📌 Ý nghĩa: Chỉ rõ nhân viên nào là quản lý của phòng nào và trong khoảng thời gian nào.
+
+5️⃣ titles (Chức vụ)
+    - emp_no (bigint, khóa ngoại): Mã số nhân viên.
+    - title (varchar(50)): Chức danh của nhân viên.
+    - from_date, to_date (date): Thời gian giữ chức vụ đó.
+    📌 Ý nghĩa: Nhân viên có thể thay đổi chức danh theo thời gian.
+
+6️⃣ salaries (Lương)
+    - emp_no (bigint, khóa ngoại): Mã số nhân viên.
+    - salary (int(11)): Mức lương.
+    - from_date, to_date (date): Thời gian hưởng mức lương đó.
+    📌 Ý nghĩa: Nhân viên có thể thay đổi mức lương theo thời gian.
+
+🔗 Mối quan hệ giữa các bảng
+    - employees ↔ dept_emp ↔ departments: Một nhân viên có thể thuộc nhiều phòng ban khác nhau theo thời gian.
+    - employees ↔ dept_manager ↔ departments: Nhân viên có thể là quản lý của một phòng ban.
+    - employees ↔ titles: Nhân viên có thể giữ nhiều chức vụ khác nhau theo thời gian.
+    - employees ↔ salaries: Nhân viên có thể có nhiều mức lương khác nhau trong các giai đoạn làm việc.
+📌 Tóm lại:
+    - Hệ thống này giúp theo dõi lịch sử làm việc, quản lý phòng ban, chức vụ, và mức lương của nhân viên theo thời gian.
+    - Một nhân viên có thể làm ở nhiều phòng ban khác nhau, có nhiều chức vụ và thay đổi lương theo thời gian.
+
+📌 Thứ tự fake data DB
+1️⃣ departments (Phòng ban): Fake danh sách phòng ban trước vì các bảng khác sẽ tham chiếu đến dept_no.
+2️⃣ employees (Nhân viên): Fake danh sách nhân viên vì các bảng khác như dept_emp, dept_manager, titles, salaries đều tham chiếu đến emp_no.
+3️⃣ dept_emp (Quan hệ nhân viên - phòng ban): Fake dữ liệu để chỉ định nhân viên thuộc phòng ban nào.
+4️⃣ dept_manager (Quản lý phòng ban): Chọn một số nhân viên trong employees để làm quản lý phòng ban.
+5️⃣ titles (Chức danh): Fake chức danh cho từng nhân viên.
+6️⃣ salaries (Lương): Fake lương tương ứng với từng nhân viên.
