@@ -18,7 +18,7 @@ class DepartmentFactory extends Factory
     public function definition(): array
     {
         do {
-            $dept_no = $this->faker->numberBetween(100, 999);
+             $dept_no = $this->faker->numberBetween(100, 999);
         } while (Department::where('dept_no', $dept_no)->exists());
 
         return [
