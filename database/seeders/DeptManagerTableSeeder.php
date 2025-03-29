@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\DeptManager;
 use Illuminate\Database\Seeder;
 
 class DeptManagerTableSeeder extends Seeder
@@ -12,6 +12,6 @@ class DeptManagerTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        DeptManager::factory()->count(16)->create();
     }
 }

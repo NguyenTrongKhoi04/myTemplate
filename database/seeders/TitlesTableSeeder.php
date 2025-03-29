@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Title;
 use Illuminate\Database\Seeder;
 
 class TitlesTableSeeder extends Seeder
@@ -12,6 +12,6 @@ class TitlesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Title::factory()->count(150)->create();
     }
 }

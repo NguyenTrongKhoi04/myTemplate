@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\DeptEmp;
 use Illuminate\Database\Seeder;
 
 class DeptEmpTableSeeder extends Seeder
@@ -12,6 +12,6 @@ class DeptEmpTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        DeptEmp::factory()->count(300)->create();
     }
 }

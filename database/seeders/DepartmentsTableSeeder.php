@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Department;
 use Illuminate\Database\Seeder;
 
 class DepartmentsTableSeeder extends Seeder
@@ -12,6 +12,6 @@ class DepartmentsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Department::factory()->count(10)->create();
     }
 }

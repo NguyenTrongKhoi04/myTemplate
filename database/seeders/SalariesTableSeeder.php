@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Salary;
 use Illuminate\Database\Seeder;
 
 class SalariesTableSeeder extends Seeder
@@ -12,6 +12,6 @@ class SalariesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Salary::factory()->count(600)->create();
     }
 }
