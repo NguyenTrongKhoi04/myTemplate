@@ -1,0 +1,3 @@
+# 1. Display menu dropdown
+    - JS in sidebar.blade.php
+    - if [data-customer-menu-dropdown] = true => addClass 'here show'

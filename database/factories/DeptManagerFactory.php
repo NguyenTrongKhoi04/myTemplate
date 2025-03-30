@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Department;
+use App\Models\Department\Department;
 use App\Models\DeptManager;
 use App\Models\Employee;
 use Illuminate\Database\Eloquent\Factories\Factory;
