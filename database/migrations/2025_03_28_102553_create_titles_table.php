@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('titles', function (Blueprint $table) {
             $table->bigInteger('emp_no')->unsigned();
-            $table->string('title', 50);
+            $table->string('title', 150);
             $table->date('from_date');
             $table->date('to_date')->nullable();
             $table->primary(['emp_no', 'title', 'from_date']);

@@ -20,7 +20,8 @@ class DepartmentController extends Controller
         $departmentsFormated = Department::all();
 
         $arrDataToView = [
-
+            'departments' => $departments,
+            'departmentsFormated' => $departmentsFormated,
         ];
 
         return view('department.index', $arrDataToView);
