@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Department\Department;
+use App\Models\Department\DepartmentQuery;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
@@ -16,12 +16,10 @@ class DepartmentController extends Controller
      */
     public function index(): View
     {
-        $departments = Department::all();
-        $departmentsFormated = Department::all();
+        $departments = DepartmentQuery::getAllDepartment();
 
         $arrDataToView = [
             'departments' => $departments,
-            'departmentsFormated' => $departmentsFormated,
         ];
 
         return view('department.index', $arrDataToView);

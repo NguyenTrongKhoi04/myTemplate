@@ -1,4 +1,7 @@
-@php use App\View\Widgets\BreadcrumbWidget; @endphp
+@php
+    use App\View\Widgets\BreadcrumbWidget;
+    use Carbon\Carbon;
+@endphp
 @extends('layout.main')
 @section('title_page')
     Department
@@ -318,91 +321,58 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-hover table-bordered" id="table-offers">
+                                        <table class="table table-hover table-bordered" id="table-departments">
                                             <thead>
-                                            <tr class="text-center">
-                                                <th style="width: 100px;">Zone ID</th>
-                                                <th>Name</th>
-                                                <th style="width: 90px;">Status</th>
-                                                <th class="stats">Ad Requests</th>
-                                                <th class="stats">BG Imps</th>
-                                                <th class="stats">BG Clicks</th>
-                                                <th class="stats">CTR %</th>
-                                                <th class="stats">Revenue</th>
-                                                <th class="stats">Fill Rate (%)</th>
-                                            </tr>
+                                                <tr class="text-center">
+                                                    <th>#</th>
+                                                    <th>Code</th>
+                                                    <th>Name</th>
+                                                    <th>Created at</th>
+                                                    <th>Updated at</th>
+                                                    <th>Action</th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr class="nukatu-row">
-                                                <td class="text-center "><b>#469891</b></td>
-                                                <td class="nukatu_name">
-                                                    [Test] Game
-                                                    <span class="action-column">
-
-                                                <a target="_blank"
-                                                   href="https://pop.diveinthebluesky.biz/creative-banner/creative-reports?date_range=2025-03-29%20-%202025-03-29&amp;campaign=204&amp;grouping%5B0%5D=date&amp;grouping%5B1%5D=creative_offer_id"
-                                                   class="text-blue-600 me-2" title="View Report">
-                                                        <i class="fa fs-2 fa-line-chart" style="color:#0a6aa1;"></i>
-                                                    </a>
-
-                                                <a href="https://pop.diveinthebluesky.biz/creative-banner/campaigns/204/edit"
-                                                   class="text-blue-600 me-2" title="Edit Campaign">
-                                                    <i class="fa fs-2 fa-edit" style="color:#0a6aa1;"></i>
-                                                </a>
-                                                <a href="https://pop.diveinthebluesky.biz/creative-banner/campaigns/clone/204"
-                                                   class="text-blue-600 me-2" title="Clone Campaign">
-                                                     <i class="fa fs-2 fa-clone" style="color:#0a6aa1;"></i>
-                                                </a>
-                                                <form
-                                                    action="https://pop.diveinthebluesky.biz/creative-banner/campaigns/204"
-                                                    method="POST" class="d-inline" id="form-delete-campaign-204">
-                                                    <input type="hidden" name="_token"
-                                                           value="UeJ7XtZ7GY7uDZp6fhefHc2Afq47GWGTlskzhHnp"
-                                                           autocomplete="off">                                                    <input
-                                                        type="hidden" name="_method" value="DELETE">                                                    <button
-                                                        type="submit" class="btn-delete" title="Delete Campaign"
-                                                        style="background: transparent; border: none; color: #e63757;">
-                                                        <i class="fa fs-2 fa-trash" style="color: #0a6aa1"></i>
-                                                    </button>
-                                                </form>
-
-                                                <button class="btn-show-code"
-                                                        style="background: transparent; border: none; color: #e63757;"
-                                                        title="Show Code" data-id="204">
-                                                    <i class="fa fs-2 fa-code me-1" style="color: #0a6aa1"></i>
-                                                </button>
-                                            </span>
-                                                </td>
-                                                <td>
-                                                    <div
-                                                        class="d-flex justify-content-center align-items-center">
-                                                        <i class="fas fa-check-circle text-success fs-3"
-                                                           title="Active"></i>
-                                                    </div>
-                                                </td>
-                                                <td class="text-end">938,797</td>
-                                                <td class="text-end">623,555</td>
-                                                <td class="text-end">1,561</td>
-                                                <td class="text-end">0.25</td>
-                                                <td class="text-end">-</td>
-                                                <td class="text-end">66.42</td>
-
-                                            </tr>
+                                            @foreach($departments as $itemDepartments)
+                                                <tr class="">
+                                                    <td class="text-center "><b>#</b></td>
+                                                    <td>{{ $itemDepartments->dept_no }}</td>
+                                                    <td>{{ $itemDepartments->dept_name }}</td>
+                                                    <td>{{ $itemDepartments->created_at }}</td>
+                                                    <td>{{ Carbon::parse($itemDepartments->updated_at)->format('Y')  }}</td>
+                                                    <td>
+                                                        <form
+                                                            action="https://pop.diveinthebluesky.biz/creative-banner/campaigns/204"
+                                                            method="POST" class="d-inline"
+                                                            id="form-delete-campaign-204">
+                                                            <input type="hidden" name="_token"
+                                                                   value="UeJ7XtZ7GY7uDZp6fhefHc2Afq47GWGTlskzhHnp"
+                                                                   autocomplete="off"> <input
+                                                                type="hidden" name="_method" value="DELETE">
+                                                            <button
+                                                                type="submit" class="btn-delete" title="Delete Campaign"
+                                                                style="background: transparent; border: none; color: #e63757;">
+                                                                <i class="fa fs-2 fa-trash" style="color: #0a6aa1"></i>
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                             </tbody>
-                                            <tfoot>
-                                            <tr class="text-center fw-bold">
-                                                <td>Total</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td class="text-end">1,182,630</td>
-                                                <td class="text-end">801,855</td>
-                                                <td class="text-end">2,172</td>
-                                                <td class="text-end">-</td>
-                                                <td class="text-end">0.00</td>
-                                                <td class="text-end">-</td>
+                                            {{--                                            <tfoot>--}}
+                                            {{--                                            <tr class="text-center fw-bold">--}}
+                                            {{--                                                <td>Total</td>--}}
+                                            {{--                                                <td>-</td>--}}
+                                            {{--                                                <td>-</td>--}}
+                                            {{--                                                <td class="text-end">1,182,630</td>--}}
+                                            {{--                                                <td class="text-end">801,855</td>--}}
+                                            {{--                                                <td class="text-end">2,172</td>--}}
+                                            {{--                                                <td class="text-end">-</td>--}}
+                                            {{--                                                <td class="text-end">0.00</td>--}}
+                                            {{--                                                <td class="text-end">-</td>--}}
 
-                                            </tr>
-                                            </tfoot>
+                                            {{--                                            </tr>--}}
+                                            {{--                                            </tfoot>--}}
                                         </table>
                                     </div>
                                     <div class="pagination-wrapper float-end">

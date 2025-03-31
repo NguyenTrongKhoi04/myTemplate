@@ -10,9 +10,8 @@ class DepartmentQuery extends Department
 
     public static function getAllDepartment()
     {
-        $dataAll = Department::all();
-        $formateDate = DepartmentFormat::formatDateObj($dataAll);
-        $formatPrice = DepartmentFormat::formatPriceObj($formateDate);
-        return $formatPrice
+        $data = Department::all();
+//        dd(DepartmentFormat::formatDate($data, 'Y'));
+        return DepartmentFormat::formatDate($data, 'Y');
     }
 }

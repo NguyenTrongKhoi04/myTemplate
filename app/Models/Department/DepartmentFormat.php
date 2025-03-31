@@ -18,30 +18,55 @@ class DepartmentFormat extends Department
         ];
     }
 
-    public static function formatDate($obj)
+    public static function formatDate($data, string $format_date = 'Y-m-d')
     {
-        if (!$obj) {
+        if (!$data) {
             return null;
         }
 
         $instance = new DepartmentFormat;
         $formatFields = $instance->fieldFormatDate;
 
-        // Nếu $obj là một collection thì duyệt qua từng item
-        if ($obj instanceof Collection) {
-            return $obj->map(fn($item) => self::formatDateObj($item));
+        // Nếu là collection, duyệt từng item
+        if ($data instanceof Collection) {
+            return $data->map(fn($item) => self::formatDate($item));
         }
 
-        // Nếu là object đơn thì format
-        foreach ($formatFields as $field) {
-            if (isset($obj->$field)) {
-                $obj->$field = Carbon::parse($obj->$field)->format('Y-m-d H:i:s');
+        // Nếu là object
+        if (is_object($data)) {
+            foreach ($formatFields as $field) {
+                if (isset($data->$field) && self::isValidDate($data->$field)) {
+                    $format_date = 'Y-m-d';
+                    // Fix it
+
+                    $data->$field = Carbon::parse($data->$field)->format($format_date);
+                    dd($data->$field, $a);
+//                    dd(Carbon::parse($data->$field)->format($format_date), $data->$field);
+                }
             }
+            return $data;
         }
 
-        if(is_array()){
-
+        // Nếu là Mảng (thuần và đa chiều)
+        if (is_array($data)) {
+            foreach ($data as &$item) {
+                if (is_array($item) || is_object($item)) {
+                    $item = self::formatDate($item, $format_date); // Đệ quy xử lý tiếp nếu là array
+                } elseif (self::isValidDate($item)) {
+                    $item = Carbon::parse($item)->format($format_date); // Format nếu là ngày hợp lệ
+                }
+            }
+            return $data;
         }
-        return $obj;
+
+        return $data;
+    }
+
+    private static function isValidDate($date): bool
+    {
+        if(Carbon::parse($date)){
+           return true;
+        }
+        return false;
     }
 }
