@@ -18,7 +18,7 @@ class DepartmentFormat extends Department
         ];
     }
 
-    public static function formatDate($data, string $format_date = 'Y-m-d')
+    public static function formatDateFix($data, string $format_date = 'Y-m-d')
     {
         if (!$data) {
             return null;
@@ -36,12 +36,7 @@ class DepartmentFormat extends Department
         if (is_object($data)) {
             foreach ($formatFields as $field) {
                 if (isset($data->$field) && self::isValidDate($data->$field)) {
-                    $format_date = 'Y-m-d';
-                    // Fix it
-
                     $data->$field = Carbon::parse($data->$field)->format($format_date);
-                    dd($data->$field, $a);
-//                    dd(Carbon::parse($data->$field)->format($format_date), $data->$field);
                 }
             }
             return $data;
@@ -61,6 +56,8 @@ class DepartmentFormat extends Department
 
         return $data;
     }
+
+
 
     private static function isValidDate($date): bool
     {

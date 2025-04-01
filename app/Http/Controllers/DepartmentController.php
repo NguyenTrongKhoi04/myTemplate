@@ -16,10 +16,15 @@ class DepartmentController extends Controller
      */
     public function index(): View
     {
-        $departments = DepartmentQuery::getAllDepartment();
+        $departments = DepartmentQuery::getAllDepartmentPagination();
+        $title = [
+            'page' => 'Department',
+            'table' => 'Departments',
+        ];
 
         $arrDataToView = [
             'departments' => $departments,
+            'title' => $title,
         ];
 
         return view('department.index', $arrDataToView);

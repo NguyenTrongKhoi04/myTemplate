@@ -11,11 +11,15 @@ class Department extends Model
 {
     use HasFactory;
     protected  $table = 'departments';
-//    protected $fillable = [];
-//    protected $casts = [
-//        'created_at' => 'string',
-//        'updated_at' => 'string',
-//    ];
+    protected $fillable = [
+        'dept_no',
+        'dept_name',
+        'created_at',
+        'updated_at',
+    ];
+
+    public $timestamps = false;
+
     protected static function newFactory(): DepartmentFactory|Factory
     {
         return DepartmentFactory::new();

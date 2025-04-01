@@ -4,7 +4,7 @@
 @endphp
 @extends('layout.main')
 @section('title_page')
-    Department
+    <?= $title['page'] ?>
 @endsection
 @section('content_page')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -12,12 +12,11 @@
         <div class="toolbar" id="kt_toolbar">
             <!--begin::Container-->
             <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-                {{--            <x-breadcrumb-widget item_breadcrumb={{ $item_breadcrumb }} />--}}
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                      data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                      class="page-title d-flex align-items-center me-3 flex-wrap lh-1">
-                    <!--begin::Breadcrumb-->
 
+                    <!--begin::Breadcrumb-->
                     {!! BreadcrumbWidget::render() !!}
                     <!--end::Breadcrumb-->
                 </div>
@@ -163,7 +162,7 @@
                         <div id="kt_content_container" class="container-xxl">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Title</h3>
+                                    <h3 class="card-title">{{ $title['table']  }}</h3>
                                     {{--                                <div class="card-toolbar">--}}
                                     {{--                                    <button type="button" class="btn btn-sm btn-light">--}}
                                     {{--                                        Action--}}
@@ -174,136 +173,9 @@
                                     <div class="row">
                                         <div class="col-md-2 col-sm-12 mb-5">
                                             <div class="form-group">
-                                                <label for="date-range" class="form-label">Date Range</label>
-                                                <input type="text" class="form-control" id="date-range"
-                                                       name="date_range" value="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2 col-sm-12 mb-5">
-                                            <div class="form-group">
                                                 <label for="search" class="form-label">Search</label>
                                                 <input type="text" class="form-control" id="search"
                                                        name="search" placeholder="Search..." value="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2 col-sm-12 mb-5">
-                                            <div class="form-group">
-                                                <label for="campaign" class="form-label">Campaign</label>
-                                                <select
-                                                    class="form-select select2-search select2-hidden-accessible"
-                                                    id="campaign" name="campaign"
-                                                    data-select2-id="select2-data-campaign" tabindex="-1"
-                                                    aria-hidden="true">
-                                                    <option value="" data-select2-id="select2-data-2-es0s">
-                                                        Select Campaign
-                                                    </option>
-                                                    <option value="205">
-                                                        🟢 766596
-                                                        | test offers 25.03
-                                                    </option>
-                                                    <option value="204">
-                                                        🟢 469891
-                                                        | [Test] Game
-                                                    </option>
-                                                    <option value="203">
-                                                        🟢 187671
-                                                        | Casino - T4
-                                                    </option>
-                                                    <option value="202">
-                                                        🟢 575743
-                                                        | AI Sex Chat - T4
-                                                    </option>
-                                                    <option value="201">
-                                                        🟢 010533
-                                                        | Test Landing Pages
-                                                    </option>
-                                                    <option value="188">
-                                                        🟢 075426
-                                                        | [CPAmatica] Dating - WW (comick)
-                                                    </option>
-                                                    <option value="186">
-                                                        🟢 747565
-                                                        | [CPAmatica] FantasyGF
-                                                    </option>
-                                                    <option value="185">
-                                                        🟢 357580
-                                                        | Kaito test 12.03
-                                                    </option>
-                                                </select><span
-                                                    class="select2 select2-container select2-container--bootstrap5"
-                                                    dir="ltr" data-select2-id="select2-data-1-vztg"
-                                                    style="width: 100%;"><span class="selection"><span
-                                                            class="select2-selection select2-selection--single form-select"
-                                                            role="combobox" aria-haspopup="true"
-                                                            aria-expanded="false" tabindex="0"
-                                                            aria-disabled="false"
-                                                            aria-labelledby="select2-campaign-container"
-                                                            aria-controls="select2-campaign-container"><span
-                                                                class="select2-selection__rendered"
-                                                                id="select2-campaign-container" role="textbox"
-                                                                aria-readonly="true" title="Select "><span
-                                                                    class="select2-selection__placeholder">Select </span></span><span
-                                                                class="select2-selection__arrow"
-                                                                role="presentation"><b
-                                                                    role="presentation"></b></span></span></span><span
-                                                        class="dropdown-wrapper"
-                                                        aria-hidden="true"></span></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-sm-12 mb-5">
-                                            <div class="form-group">
-                                                <label for="grouping" class="form-label">Grouping</label>
-                                                <select
-                                                    class="form-select select2-search select2-hidden-accessible"
-                                                    id="grouping" name="grouping[]" multiple=""
-                                                    data-select2-id="select2-data-grouping" tabindex="-1"
-                                                    aria-hidden="true">
-                                                    <option value="date" selected=""
-                                                            data-select2-id="select2-data-4-5jif">Date
-                                                    </option>
-                                                    <option value="creative_campaign_id">
-                                                        Campaign
-                                                    </option>
-                                                    <option value="creative_offer_id">
-                                                        Offer
-                                                    </option>
-                                                </select><span
-                                                    class="select2 select2-container select2-container--bootstrap5"
-                                                    dir="ltr" data-select2-id="select2-data-3-jb99"
-                                                    style="width: 100%;"><span class="selection"><span
-                                                            class="select2-selection select2-selection--multiple form-select select2-selection--clearable"
-                                                            role="combobox" aria-haspopup="true"
-                                                            aria-expanded="false" tabindex="-1"
-                                                            aria-disabled="false"><button type="button"
-                                                                                          class="select2-selection__clear"
-                                                                                          tabindex="-1"
-                                                                                          title="Remove all items"
-                                                                                          aria-label="Remove all items"
-                                                                                          aria-describedby="select2-grouping-container"
-                                                                                          data-select2-id="select2-data-6-2vm5"><span
-                                                                    aria-hidden="true">×</span></button><ul
-                                                                class="select2-selection__rendered"
-                                                                id="select2-grouping-container"><li
-                                                                    class="select2-selection__choice" title="Date
-                                    " data-select2-id="select2-data-5-8dlr"><button type="button"
-                                                                                    class="select2-selection__choice__remove"
-                                                                                    tabindex="-1" title="Remove item"
-                                                                                    aria-label="Remove item"
-                                                                                    aria-describedby="select2-grouping-container-choice-5i6r-date"><span
-                                                                            aria-hidden="true">×</span></button><span
-                                                                        class="select2-selection__choice__display"
-                                                                        id="select2-grouping-container-choice-5i6r-date">Date
-                                    </span></li></ul><span class="select2-search select2-search--inline"><textarea
-                                                                    class="select2-search__field" type="search"
-                                                                    tabindex="0" autocorrect="off"
-                                                                    autocapitalize="none" spellcheck="false"
-                                                                    role="searchbox" aria-autocomplete="list"
-                                                                    autocomplete="off" aria-label="Search"
-                                                                    aria-describedby="select2-grouping-container"
-                                                                    placeholder=""
-                                                                    style="width: 0.75em;"></textarea></span></span></span><span
-                                                        class="dropdown-wrapper"
-                                                        aria-hidden="true"></span></span>
                                             </div>
                                         </div>
                                         <div class="col-md-2 col-sm-12 mb-5">
@@ -323,24 +195,25 @@
                                     <div class="table-responsive">
                                         <table class="table table-hover table-bordered" id="table-departments">
                                             <thead>
-                                                <tr class="text-center">
-                                                    <th>#</th>
-                                                    <th>Code</th>
-                                                    <th>Name</th>
-                                                    <th>Created at</th>
-                                                    <th>Updated at</th>
-                                                    <th>Action</th>
-                                                </tr>
+                                            <tr class="text-center">
+                                                <th>#</th>
+                                                <th>Code</th>
+                                                <th>Name</th>
+                                                <th>Created at</th>
+                                                <th>Updated at</th>
+                                                <th>Action</th>
+                                            </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($departments as $itemDepartments)
                                                 <tr class="">
-                                                    <td class="text-center "><b>#</b></td>
-                                                    <td>{{ $itemDepartments->dept_no }}</td>
+                                                    <td class="text-center "><b>{{ $loop->iteration }}</b></td>
+                                                    <td class="text-center">{{ $itemDepartments->dept_no }}</td>
                                                     <td>{{ $itemDepartments->dept_name }}</td>
-                                                    <td>{{ $itemDepartments->created_at }}</td>
-                                                    <td>{{ Carbon::parse($itemDepartments->updated_at)->format('Y')  }}</td>
-                                                    <td>
+                                                    <td class="text-center">{{ HelperFormat::date($itemDepartments->created_at) }}</td>
+                                                    <td class="text-center">{{ HelperFormat::date($itemDepartments->updated_at)  }}</td>
+                                                    <td class="text-center">
+                                                        <i class="bi bi-pencil-square fs-1 text-warning"></i>
                                                         <form
                                                             action="https://pop.diveinthebluesky.biz/creative-banner/campaigns/204"
                                                             method="POST" class="d-inline"
@@ -352,7 +225,7 @@
                                                             <button
                                                                 type="submit" class="btn-delete" title="Delete Campaign"
                                                                 style="background: transparent; border: none; color: #e63757;">
-                                                                <i class="fa fs-2 fa-trash" style="color: #0a6aa1"></i>
+                                                                <i class="bi bi-trash fs-1 text-danger"></i>
                                                             </button>
                                                         </form>
                                                     </td>
@@ -370,26 +243,12 @@
                                             {{--                                                <td class="text-end">-</td>--}}
                                             {{--                                                <td class="text-end">0.00</td>--}}
                                             {{--                                                <td class="text-end">-</td>--}}
-
                                             {{--                                            </tr>--}}
                                             {{--                                            </tfoot>--}}
                                         </table>
                                     </div>
-                                    <div class="pagination-wrapper float-end">
-                                        <ul class="pagination">
-                                            <li class="page-item previous disabled"><a href="#"
-                                                                                       class="page-link"><i
-                                                        class="previous"></i></a></li>
-                                            <li class="page-item "><a href="#" class="page-link">1</a></li>
-                                            <li class="page-item active"><a href="#" class="page-link">2</a>
-                                            </li>
-                                            <li class="page-item "><a href="#" class="page-link">3</a></li>
-                                            <li class="page-item "><a href="#" class="page-link">...</a></li>
-                                            <li class="page-item "><a href="#" class="page-link">5</a></li>
-                                            <li class="page-item "><a href="#" class="page-link">6</a></li>
-                                            <li class="page-item next"><a href="#" class="page-link"><i
-                                                        class="next"></i></a></li>
-                                        </ul>
+                                    <div class="pagination-wrapper">
+                                        {{ $departments->links('pagination::bootstrap-5') }}
                                     </div>
                                 </div>
                             </div>
