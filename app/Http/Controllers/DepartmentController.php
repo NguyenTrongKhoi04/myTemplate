@@ -16,7 +16,7 @@ class DepartmentController extends Controller
      */
     public function index(): View
     {
-        $departments = DepartmentQuery::getAllDepartmentPagination();
+        $departments = DepartmentQuery::getAllDepartmentPagination(); // Fix: pagination
         $title = [
             'page' => 'Department',
             'table' => 'Departments',
