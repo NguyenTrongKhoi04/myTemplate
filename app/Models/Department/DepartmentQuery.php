@@ -7,12 +7,13 @@ use Illuminate\Support\Collection;
 
 class DepartmentQuery extends Department
 {
-    public static function getDepartmentById($id){
-        return Department::find($id);
-    }
-
-    public static function getAllDepartmentPagination(int $paginate = 20): LengthAwarePaginator
+    public static function getData(array $dataForQuery): LengthAwarePaginator
     {
+        $paginate = $dataForQuery['paginate'] ?? 20;
+        $query = Department::query();
+        DepartmentSearch::buildFilter($query);
         return Department::query()->paginate($paginate);
     }
+
+
 }

@@ -14,18 +14,14 @@ class DepartmentController extends Controller
      *
      * @return View
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $departments = DepartmentQuery::getAllDepartmentPagination(); // Fix: pagination
-        $title = [
-            'page' => 'Department',
-            'table' => 'Departments',
-        ];
+        $title = ['page' => 'Department', 'table' => 'Departments'];
+        $dataGet = $request->query() ?? [];
+        $dataForQuery = ['dataGet' => $dataGet];
 
-        $arrDataToView = [
-            'departments' => $departments,
-            'title' => $title,
-        ];
+        $departments = DepartmentQuery::getData($dataForQuery);
+        $arrDataToView = ['departments' => $departments, 'title' => $title];
 
         return view('department.index', $arrDataToView);
     }
