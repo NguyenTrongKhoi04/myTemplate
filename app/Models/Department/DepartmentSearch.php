@@ -6,43 +6,29 @@ use Illuminate\Database\Eloquent\Builder;
 
 class DepartmentSearch extends Department
 {
-    public array $filter = [
-        'keyword',
-        'name',
-        'code',
-    ];
-
     /**
      * Apply filters to a query.
      *
      * @param Builder $query
-     * @param array $data
+     * @param array $dataForQuery
      * @return Builder
      */
-    public function buildFilter(Builder $query, array $data): Builder
+    public static function buildFilter(Builder $query, array $dataForQuery): Builder
     {
-        if (!empty($data['keyword'])) {
-            $query->where(function ($q) use ($data) {
-                $q->where('name', 'like', '%' . $data['keyword'] . '%')
-                    ->orWhere('code', 'like', '%' . $data['keyword'] . '%');
-            });
-        }
-
-        if (!empty($data['name'])) {
-            $query->where('name', 'like', '%' . $data['name'] . '%');
-        }
-
-        if (!empty($data['code'])) {
-            $query->where('code', 'like', '%' . $data['code'] . '%');
+        if (!empty($dataForQuery['keyword'])) {
+            $keyword = '%' . $dataForQuery['keyword'] . '%';
+            $query->where('dept_no', 'like', $keyword)
+                ->orWhere('dept_name', 'like', $keyword);
         }
 
         return $query;
     }
 
-    public static function buildSearch($query){
-
-
-
+    public static function buildSort(Builder $query, array $dataForQuery): Builder
+    {
+        $field_sort = $dataForQuery['field_sort'] ?? 'dept_no';
+        $type_sort = $dataForQuery['type_sort'] ?? 'desc';
+        $query->orderBy($field_sort, $type_sort);
 
         return $query;
     }

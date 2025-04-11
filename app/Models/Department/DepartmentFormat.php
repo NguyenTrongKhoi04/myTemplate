@@ -7,17 +7,6 @@ use Illuminate\Support\Collection;
 
 class DepartmentFormat extends Department
 {
-    public array $fieldFormatDate = [];
-
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-        $this->fieldFormatDate = [
-            'created_at',
-            'updated_at',
-        ];
-    }
-
     public static function formatDateFix($data, string $format_date = 'Y-m-d')
     {
         if (!$data) {
