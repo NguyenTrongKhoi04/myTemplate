@@ -58,11 +58,10 @@ class DepartmentFormat extends Department
     }
 
 
-
     private static function isValidDate($date): bool
     {
-        if(Carbon::parse($date)){
-           return true;
+        if (Carbon::parse($date)) {
+            return true;
         }
         return false;
     }

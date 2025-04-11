@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [DepartmentController::class, 'index']);
 
 Route::resource('department', DepartmentController::class);
 Route::resource('employees', EmployeeController::class);

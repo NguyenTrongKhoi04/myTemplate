@@ -1,10 +1,9 @@
 @php
     use App\View\Widgets\BreadcrumbWidget;
-    use Carbon\Carbon;
 @endphp
 @extends('layout.main')
 @section('title_page')
-    <?= $title['page'] ?>
+    Department
 @endsection
 @section('content_page')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -15,7 +14,6 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                      data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                      class="page-title d-flex align-items-center me-3 flex-wrap lh-1">
-
                     <!--begin::Breadcrumb-->
                     {!! BreadcrumbWidget::render() !!}
                     <!--end::Breadcrumb-->
@@ -162,35 +160,37 @@
                         <div id="kt_content_container" class="container-xxl">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">{{ $title['table']  }}</h3>
+                                    <h3 class="card-title">Departments</h3>
                                     {{--                                <div class="card-toolbar">--}}
                                     {{--                                    <button type="button" class="btn btn-sm btn-light">--}}
                                     {{--                                        Action--}}
                                     {{--                                    </button>--}}
                                     {{--                                </div>--}}
                                 </div>
-                                <div class="card-body pb-0">
-                                    <div class="row">
-                                        <div class="col-md-2 col-sm-12 mb-5">
-                                            <div class="form-group">
-                                                <label for="search" class="form-label">Search</label>
-                                                <input type="text" class="form-control" id="search"
-                                                       name="search" placeholder="Search..." value="">
+                                <form action="" method="GET">
+                                    <div class="card-body pb-0">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-12 mb-5">
+                                                <div class="form-group">
+                                                    <label for="search" class="form-label">Search name or code</label>
+                                                    <input type="text" class="form-control" id="search"
+                                                           name="keyword" placeholder="Enter keyword..." value="<?= $_GET['keyword'] ?? '' ?>">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-2 col-sm-12 mb-5">
-                                            <div class="form-group">
-                                                <label for="submit" class="form-label">&nbsp;</label>
-                                                <div class="btn-actions">
-                                                    <button type="submit" class="btn btn-primary">Submit
-                                                    </button>
-                                                    <a href="https://pop.diveinthebluesky.biz/creative-banner/creative-reports"
-                                                       class="btn btn-secondary">Reset</a>
+                                            <div class="col-md-2 col-sm-12 mb-5">
+                                                <div class="form-group">
+                                                    <label for="submit" class="form-label">&nbsp;</label>
+                                                    <div class="btn-actions">
+                                                        <button type="submit" class="btn btn-primary">Submit
+                                                        </button>
+                                                        <a href="/"
+                                                           class="btn btn-secondary">Reset</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table table-hover table-bordered" id="table-departments">

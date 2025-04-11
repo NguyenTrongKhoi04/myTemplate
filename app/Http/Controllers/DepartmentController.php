@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Department\DepartmentQuery;
+use App\Models\Department\DepartmentActions;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
@@ -12,22 +12,15 @@ class DepartmentController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return View
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $departments = DepartmentQuery::getAllDepartmentPagination(); // Fix: pagination
-        $title = [
-            'page' => 'Department',
-            'table' => 'Departments',
-        ];
+        $departments = DepartmentActions::getDataForIndex($request->all());
 
-        $arrDataToView = [
-            'departments' => $departments,
-            'title' => $title,
-        ];
-
-        return view('department.index', $arrDataToView);
+        $dataView = ['departments' => $departments];
+        return view('department.index', $dataView);
     }
 
     /**

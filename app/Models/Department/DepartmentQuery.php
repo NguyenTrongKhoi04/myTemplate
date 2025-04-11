@@ -2,17 +2,12 @@
 
 namespace App\Models\Department;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Builder;
 
 class DepartmentQuery extends Department
 {
-    public static function getDepartmentById($id){
-        return Department::find($id);
-    }
-
-    public static function getAllDepartmentPagination(int $paginate = 20): LengthAwarePaginator
+    public static function base($field = 'dept_no', $type = 'desc'): Builder
     {
-        return Department::query()->paginate($paginate);
+        return Department::query()->orderBy($field, $type);
     }
 }
