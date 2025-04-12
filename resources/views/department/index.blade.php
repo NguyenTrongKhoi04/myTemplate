@@ -218,7 +218,7 @@
                                                     <td class="text-center">{{ HelperFormat::date($itemDepartments->created_at) }}</td>
                                                     <td class="text-center">{{ HelperFormat::date($itemDepartments->updated_at)  }}</td>
                                                     <td class="text-center">
-                                                        <i class="bi bi-pencil-square fs-1 text-warning"></i>
+                                                        <i class="bi bi-pencil-square fs-1 text-warning" onclick="department.object.openFormEditAjax(<?= $itemDepartments->dept_no ?>)"></i>
                                                         <form
                                                             action="https://pop.diveinthebluesky.biz/creative-banner/campaigns/204"
                                                             method="POST" class="d-inline"
@@ -266,3 +266,10 @@
         <!--end::Post-->
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('admin/js/department.js') }}"></script>
+    <script>
+        const department = new Department();
+    </script>
+@endpush

@@ -13,6 +13,7 @@ class DepartmentController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return View
      */
     public function index(Request $request): View
@@ -66,6 +67,17 @@ class DepartmentController extends Controller
     public function edit(int $id)
     {
         //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return Response
+     */
+    public function ajaxEdit(Request $request)
+    {
+dd($request->all());
     }
 
     /**
