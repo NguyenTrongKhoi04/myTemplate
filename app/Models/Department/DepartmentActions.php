@@ -14,4 +14,9 @@ class DepartmentActions
 
         return $query->paginate($dataForQuery['paginate'] ?? 2)->appends(request()->query());
     }
+
+    public static function getOneDepartment(int $dept_no): Department
+    {
+        return Department::where('dept_no', $dept_no)->firstOrFail();
+    }
 }

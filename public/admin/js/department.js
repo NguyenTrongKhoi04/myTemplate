@@ -7,7 +7,7 @@ Department.prototype.initObject = function () {
     self.object = function () {
 
         function openFormEditAjax(dept_no) {
-            JsDefault.blockUI();
+            // JsDefault.blockUI();
 
             $.ajax({
                 url: '/department/ajax-edit',
@@ -16,13 +16,23 @@ Department.prototype.initObject = function () {
                     dept_no: dept_no,
                 },
                 success: function (res) {
-                    console.log(res)
+                    console.log(res);
                     if (res.success === true) {
-                        toastr.success("Saved!");
+                        $('#dynamic-modal').remove();
+
+                        const $modal = $('<div>', {
+                            id: 'dynamic-modal',
+                            html: res.html
+                        });
+
+                        // Gắn modal vào body
+                        $('body').append($modal);
+
+                        $('#dynamic-modal .modal').modal('show');
                     } else {
-                        toastr.error("Error!");
+
                     }
-                    JsDefault.unblockUI();
+                    // JsDefault.unblockUI();
                 }
             });
         }
