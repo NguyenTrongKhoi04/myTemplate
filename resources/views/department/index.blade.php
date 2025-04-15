@@ -1,5 +1,6 @@
 @php
     use App\View\Widgets\BreadcrumbWidget;
+    use Carbon\Carbon;
 @endphp
 @extends('layout.main')
 @section('title_page')
@@ -14,6 +15,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                      data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                      class="page-title d-flex align-items-center me-3 flex-wrap lh-1">
+
                     <!--begin::Breadcrumb-->
                     {!! BreadcrumbWidget::render() !!}
                     <!--end::Breadcrumb-->
@@ -174,7 +176,8 @@
                                                 <div class="form-group">
                                                     <label for="search" class="form-label">Search name or code</label>
                                                     <input type="text" class="form-control" id="search"
-                                                           name="keyword" placeholder="Enter keyword..." value="<?= $_GET['keyword'] ?? '' ?>">
+                                                           name="keyword" placeholder="Search..."
+                                                           value="<?= $_GET['keyword'] ?? '' ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-2 col-sm-12 mb-5">
@@ -197,10 +200,12 @@
                                             <thead>
                                             <tr class="text-center">
                                                 <th>#</th>
-                                                <th>Code</th>
-                                                <th>Name</th>
-                                                <th>Created at</th>
-                                                <th>Updated at</th>
+                                                <x-component-th-sort-link :columns="[
+                                                    'dept_no' => 'Code',
+                                                    'dept_name' => 'Name',
+                                                    'created_at' => 'Created at',
+                                                    'updated_at' => 'Updated at'
+                                                ]"/>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -213,7 +218,7 @@
                                                     <td class="text-center">{{ HelperFormat::date($itemDepartments->created_at) }}</td>
                                                     <td class="text-center">{{ HelperFormat::date($itemDepartments->updated_at)  }}</td>
                                                     <td class="text-center">
-                                                        <i class="bi bi-pencil-square fs-1 text-warning"></i>
+                                                        <i class="bi bi-pencil-square fs-1 text-warning" onclick="department.object.openFormEditAjax(<?= $itemDepartments->dept_no ?>)"></i>
                                                         <form
                                                             action="https://pop.diveinthebluesky.biz/creative-banner/campaigns/204"
                                                             method="POST" class="d-inline"
@@ -261,3 +266,10 @@
         <!--end::Post-->
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('admin/js/department.js') }}"></script>
+    <script>
+        const department = new Department();
+    </script>
+@endpush

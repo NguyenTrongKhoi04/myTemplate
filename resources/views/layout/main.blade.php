@@ -78,8 +78,8 @@
     <!--end::Page-->
 </div>
 <!--end::Root-->
-
 <!--end::Main-->
+
 <!--begin::Scrolltop-->
 <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
     <i class="ki-outline ki-arrow-up"></i>
@@ -109,8 +109,15 @@
 <script src="{{ $assetPath }}/js/custom/utilities/modals/upgrade-plan.js"></script>
 <script src="{{ $assetPath }}/js/custom/utilities/modals/create-app.js"></script>
 <script src="{{ $assetPath }}/js/custom/utilities/modals/users-search.js"></script>
+<!-- begin::sweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- end::sweetAlert2 -->
 
-@stack('script')
+<!-- begin::InitJsDefault -->
+<script src="{{ asset('admin/js/js_default.js') }}"></script>
+<!-- end::InitJsDefault -->
+
+@stack('scripts')
 <!--end::Javascript-->
 </body>
 <!--end::Body-->

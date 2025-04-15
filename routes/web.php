@@ -17,5 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DepartmentController::class, 'index']);
 
+Route::prefix('department')->controller(DepartmentController::class)->group(function () {
+    Route::get('ajax-edit', 'ajaxEdit');
+});
+
 Route::resource('department', DepartmentController::class);
 Route::resource('employees', EmployeeController::class);

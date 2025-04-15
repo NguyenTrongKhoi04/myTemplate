@@ -2,12 +2,9 @@
 
 namespace App\Models\Department;
 
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class DepartmentQuery extends Department
 {
-    public static function base($field = 'dept_no', $type = 'desc'): Builder
-    {
-        return Department::query()->orderBy($field, $type);
-    }
 }

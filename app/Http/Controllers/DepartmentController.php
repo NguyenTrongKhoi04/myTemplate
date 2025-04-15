@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department\DepartmentActions;
+use App\Models\Department\DepartmentQuery;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
@@ -17,10 +19,12 @@ class DepartmentController extends Controller
      */
     public function index(Request $request): View
     {
-        $departments = DepartmentActions::getDataForIndex($request->all());
+        $dataForQuery = $request->all();
 
-        $dataView = ['departments' => $departments];
-        return view('department.index', $dataView);
+        $departments = DepartmentActions::getDataForIndex($dataForQuery);
+
+        $arrDataToView = ['departments' => $departments];
+        return view('department.index', $arrDataToView);
     }
 
     /**
@@ -64,6 +68,25 @@ class DepartmentController extends Controller
     public function edit(int $id)
     {
         //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function ajaxEdit(Request $request): JsonResponse
+    {
+        $dept_no = $request->input('dept_no');
+
+        $department = DepartmentActions::getOneDepartment($dept_no);
+        $html = view('department.ajax._form_edit', compact('department'))->render();
+
+        return response()->json([
+            'success' => true,
+            'html' => $html
+        ]);
     }
 
     /**
