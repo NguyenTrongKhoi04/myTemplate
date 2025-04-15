@@ -1,7 +1,8 @@
 <div class="modal fade show" id="kt_modal_create_app" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered mw-600px">
         <div class="modal-content">
-            <form>
+            <form method="POST" id="_form_edit_department">
+                @csrf
                 <div class="modal-header">
                     <h2>Edit department</h2>
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -33,7 +34,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="department.object.updateAjax(<?= $department->dept_no ?>)">Save changes</button>
                 </div>
             </form>
         </div>

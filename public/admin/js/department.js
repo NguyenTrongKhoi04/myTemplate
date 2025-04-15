@@ -7,7 +7,7 @@ Department.prototype.initObject = function () {
     self.object = function () {
 
         function openFormEditAjax(dept_no) {
-            // JsDefault.blockUI();
+            JsDefault.blockUI();
 
             $.ajax({
                 url: '/department/ajax-edit',
@@ -16,27 +16,55 @@ Department.prototype.initObject = function () {
                     dept_no: dept_no,
                 },
                 success: function (res) {
-                    console.log(res);
+                    JsDefault.unBlockUI();
                     if (res.success === true) {
                         $('#dynamic-modal').remove();
 
-                        const $modal = $('<div>', {
+                        const modal = $('<div>', {
                             id: 'dynamic-modal',
                             html: res.html
                         });
 
                         // Gắn modal vào body
-                        $('body').append($modal);
+                        $('body').append(modal);
 
                         $('#dynamic-modal .modal').modal('show');
                     } else {
-
+                        toastr.error('Please reload the page !');
                     }
-                    // JsDefault.unblockUI();
                 }
             });
         }
 
+        function updateAjax(dept_no){
+            JsDefault.blockUI();
+
+            $.ajax({
+                url: '/department/update',
+                method: 'POST',
+                data: {
+                    dept_no: dept_no,
+                },
+                success: function (res) {
+                    JsDefault.unBlockUI();
+                    if (res.success === true) {
+                        $('#dynamic-modal').remove();
+
+                        const modal = $('<div>', {
+                            id: 'dynamic-modal',
+                            html: res.html
+                        });
+
+                        // Gắn modal vào body
+                        $('body').append(modal);
+
+                        $('#dynamic-modal .modal').modal('show');
+                    } else {
+                        toastr.error('Please reload the page !');
+                    }
+                }
+            });
+        }
         return {
             openFormEditAjax: function (dept_no){openFormEditAjax(dept_no)},
         }
