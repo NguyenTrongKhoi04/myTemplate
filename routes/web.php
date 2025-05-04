@@ -19,6 +19,7 @@ Route::get('/', [DepartmentController::class, 'index']);
 
 Route::prefix('department')->controller(DepartmentController::class)->group(function () {
     Route::get('ajax-edit', 'ajaxEdit');
+    Route::post('ajax-update', 'ajaxUpdate');
 });
 
 Route::resource('department', DepartmentController::class);

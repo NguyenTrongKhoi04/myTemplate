@@ -34,7 +34,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="department.object.updateAjax(<?= $department->dept_no ?>)">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="department.object.updateAjax()">Save changes</button>
                 </div>
             </form>
         </div>

@@ -90,6 +90,25 @@ class DepartmentController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function ajaxUpdate(Request $request): JsonResponse
+    {
+        $dataPost = $request->post();
+dd($dataPost);
+        $department = DepartmentActions::getOneDepartment($dept_no);
+        $html = view('department.ajax._form_edit', compact('department'))->render();
+
+        return response()->json([
+            'success' => true,
+            'html' => $html
+        ]);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param Request $request

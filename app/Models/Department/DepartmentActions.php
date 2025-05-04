@@ -19,4 +19,9 @@ class DepartmentActions
     {
         return Department::where('dept_no', $dept_no)->firstOrFail();
     }
+
+    public static function updateOneDepartment(int $dept_no, Department $department): Department
+    {
+
+    }
 }

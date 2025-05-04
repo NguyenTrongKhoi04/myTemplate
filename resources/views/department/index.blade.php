@@ -270,6 +270,10 @@
 @push('scripts')
     <script src="{{ asset('admin/js/department.js') }}"></script>
     <script>
-        const department = new Department();
+        var department = new Department();
+        $(document).ready(function () {
+            department._csrf  = '{{ csrf_token() }}';
+            console.log(department._csrf);
+        });
     </script>
 @endpush
